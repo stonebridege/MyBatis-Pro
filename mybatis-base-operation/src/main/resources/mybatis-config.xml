@@ -3,6 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--    配置外部属性文件jdbc.properties-->
+    <properties resource="jdbc.properties"/>
     <!-- environments表示配置Mybatis的开发环境，可以配置多个环境，在众多具体环境中，使用default属性指定实际运行时使用的环境。default属性的取值是environment标签的id属性的值。 -->
     <environments default="development">
         <!-- environment表示配置Mybatis的一个具体的环境 -->
@@ -11,11 +13,11 @@
             <transactionManager type="JDBC"/>
             <!-- 配置数据源 -->
             <dataSource type="POOLED">
-                <!-- 建立数据库连接的具体信息 -->
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis-example"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <!-- 建立数据库连接的具体信息（引用了外部属性文件中的数据） -->
+                <property name="driver" value="${wechat.dev.driver}"/>
+                <property name="url" value="${wechat.dev.url}"/>
+                <property name="username" value="${wechat.dev.username}"/>
+                <property name="password" value="${wechat.dev.password}"/>
             </dataSource>
         </environment>
     </environments>
