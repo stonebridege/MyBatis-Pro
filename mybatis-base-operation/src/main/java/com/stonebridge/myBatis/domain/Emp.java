@@ -18,7 +18,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class Emp {
-    private long empId;
+    private Long empId;
     private String empName;
     private Double empSalary;
 }

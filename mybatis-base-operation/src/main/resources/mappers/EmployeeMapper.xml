@@ -22,4 +22,26 @@
         <!-- 如果查出表的字段和Java类型的字段不一致，可以通过取别名的方式实现-->
         select emp_id empId,emp_name empName,emp_salary empSalary from t_emp where emp_id=#{empId}
     </select>
+
+    <!-- int insertEmp(Emp emp); -->
+    <insert id="insertEmp">
+        <!-- 现在在这条SQL语句中，#{}中的表达式需要被用来从Emp emp实体类中获取emp_name的值、emp_salary的值 -->
+        <!-- 而我们从实体类中获取值通常都是调用getter()方法 -->
+        <!-- 而getter()方法、setter()方法定义了实体类的属性 -->
+        <!-- 定义属性的规则是：把get、set去掉，剩下部分首字母小写 -->
+        <!-- 所以我们在#{}中使用getXxx()方法、setXxx()方法定义的属性名即可 -->
+        INSERT INTO t_emp(emp_name,emp_salary) VALUES (#{empName},#{empSalary})
+    </insert>
+    <delete id="deleteEmp">
+        DELETE
+        FROM t_emp
+        WHERE emp_id = #{empId}
+    </delete>
+    <!-- void updateEmp(Emp harry); -->
+    <update id="updateEmp">
+        UPDATE t_emp
+        SET emp_name=#{empName},
+            emp_salary=#{empSalary}
+        where emp_id = #{empId}
+    </update>
 </mapper>
