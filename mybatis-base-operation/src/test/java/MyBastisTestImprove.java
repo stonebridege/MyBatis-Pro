@@ -19,6 +19,13 @@ public class MyBastisTestImprove {
     }
 
     @Test
+    public void testDollar() {
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        Emp emp = employeeMapper.selectEmpByName("r");
+        System.out.println(emp.toString());
+    }
+
+    @Test
     public void testUserMapperInterface() {
         EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
         System.out.println("employeeMapper.getClass().getName():" + employeeMapper.getClass().getName());
@@ -53,5 +60,4 @@ public class MyBastisTestImprove {
         session.commit();
         session.close();
     }
-
 }

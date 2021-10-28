@@ -22,4 +22,6 @@ public interface EmployeeMapper {
     Integer deleteEmp(Long empId);
 
     Integer updateEmp(Emp emp);
+
+    Emp selectEmpByName(String name);
 }
