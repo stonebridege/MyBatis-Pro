@@ -31,4 +31,6 @@ public interface EmployeeMapper {
     Integer createEmp(@Param("empId") Long empId, @Param("name") String name, @Param("salary") Double salary);
 
     int updateEmployeeByMap(Map<String, Object> paramMap);
+
+    int selectEmpCount();
 }
