@@ -1,6 +1,7 @@
 package com.stonebridge.myBatis.dao;
 
 import com.stonebridge.myBatis.domain.Emp;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 声明这个接口是为了上层代码调用Mybatis的具体功能
@@ -24,4 +25,6 @@ public interface EmployeeMapper {
     Integer updateEmp(Emp emp);
 
     Emp selectEmpByName(String name);
+
+    Integer createEmp(@Param("empId") Long empId, @Param("name") String name, @Param("salary") Double salary);
 }

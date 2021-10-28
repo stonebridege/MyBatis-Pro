@@ -49,6 +49,16 @@ public class MyBastisTestImprove {
     }
 
     @Test
+    public void TestMultiParama() {
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        Long empId = 24L;
+        Double salary = Double.parseDouble("12345.67");
+        String name = "stonebridge";
+        Integer row = employeeMapper.createEmp(empId, name, salary);
+        System.out.println(row);
+    }
+
+    @Test
     public void TestUpdate() {
         EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
         Integer row = employeeMapper.updateEmp(new Emp(3l, "张三", 222.33));
