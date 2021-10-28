@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyBastisTestImprove {
     private SqlSession session;
@@ -56,6 +58,16 @@ public class MyBastisTestImprove {
         String name = "stonebridge";
         Integer row = employeeMapper.createEmp(empId, name, salary);
         System.out.println(row);
+    }
+
+    @Test
+    public void testUpdateEmpNameByMap() {
+        EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("empSalaryKey", 999.99);
+        paramMap.put("empIdKey", 3);
+        int result = mapper.updateEmployeeByMap(paramMap);
+        System.out.println("result = " + result);
     }
 
     @Test

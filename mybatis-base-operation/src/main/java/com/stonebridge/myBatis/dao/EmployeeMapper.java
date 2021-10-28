@@ -3,6 +3,8 @@ package com.stonebridge.myBatis.dao;
 import com.stonebridge.myBatis.domain.Emp;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Map;
+
 /**
  * 声明这个接口是为了上层代码调用Mybatis的具体功能
  * 接口的全类名要和Mapper配置文件的namespace一直，这样才能通过接口找到Mapper配置
@@ -27,4 +29,6 @@ public interface EmployeeMapper {
     Emp selectEmpByName(String name);
 
     Integer createEmp(@Param("empId") Long empId, @Param("name") String name, @Param("salary") Double salary);
+
+    int updateEmployeeByMap(Map<String, Object> paramMap);
 }

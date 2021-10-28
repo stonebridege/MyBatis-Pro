@@ -55,4 +55,9 @@
         INSERT INTO t_emp(emp_id, emp_name, emp_salary)
         VALUES (#{empId}, #{name}, #{salary})
     </insert>
+    <update id="updateEmployeeByMap">
+        update t_emp
+        set emp_salary=#{empSalaryKey}
+        where emp_id = #{empIdKey}
+    </update>
 </mapper>
