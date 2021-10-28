@@ -65,4 +65,12 @@
         select count(*)
         from t_emp
     </select>
+
+    <!-- 编写具体的SQL语句，使用id属性唯一的标记一条SQL语句 -->
+    <!-- resultType属性：指定封装查询结果的Java实体类的全类名 -->
+    <select id="selectEmployee" resultType="com.stonebridge.myBatis.domain.Emp">
+        <!-- Mybatis负责把SQL语句中的#{}部分替换成“?”占位符 -->
+        <!-- 给每一个字段设置一个别名，让别名和Java实体类中属性名一致 -->
+        select emp_id empId,emp_name empName,emp_salary empSalary from t_emp where emp_id=#{empId}
+    </select>
 </mapper>

@@ -84,6 +84,13 @@ public class MyBastisTestImprove {
         System.out.println("count = " + count);
     }
 
+    @Test
+    public void testSelectEmployee() {
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        Emp emp = employeeMapper.selectEmployee(23);
+        System.out.println(emp);
+    }
+
     @After
     public void clear() {
         session.commit();

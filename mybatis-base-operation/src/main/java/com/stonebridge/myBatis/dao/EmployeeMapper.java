@@ -33,4 +33,6 @@ public interface EmployeeMapper {
     int updateEmployeeByMap(Map<String, Object> paramMap);
 
     int selectEmpCount();
+
+    Emp selectEmployee(Integer empId);
 }
