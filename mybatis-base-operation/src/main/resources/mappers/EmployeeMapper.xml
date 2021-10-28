@@ -73,4 +73,17 @@
         <!-- 给每一个字段设置一个别名，让别名和Java实体类中属性名一致 -->
         select emp_id empId,emp_name empName,emp_salary empSalary from t_emp where emp_id=#{empId}
     </select>
+
+    <!-- Map<String,Object> selectEmpNameAndMaxSalary(); -->
+    <!-- 返回工资最高的员工的姓名和他的工资 -->
+    <select id="selectEmpNameAndMaxSalary" resultType="map">
+        SELECT emp_name                            员工姓名,
+               emp_salary                          员工工资,
+               (SELECT AVG(emp_salary) FROM t_emp) 部门平均工资
+        FROM t_emp
+        WHERE emp_salary = (
+            SELECT MAX(emp_salary)
+            FROM t_emp
+        )
+    </select>
 </mapper>

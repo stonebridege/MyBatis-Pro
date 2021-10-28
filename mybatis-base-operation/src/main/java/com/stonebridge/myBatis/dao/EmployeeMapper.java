@@ -35,4 +35,6 @@ public interface EmployeeMapper {
     int selectEmpCount();
 
     Emp selectEmployee(Integer empId);
+
+    Map<String, Object> selectEmpNameAndMaxSalary();
 }

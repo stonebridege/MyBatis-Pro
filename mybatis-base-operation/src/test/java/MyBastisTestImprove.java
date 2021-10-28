@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class MyBastisTestImprove {
     private SqlSession session;
@@ -89,6 +90,18 @@ public class MyBastisTestImprove {
         EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
         Emp emp = employeeMapper.selectEmployee(23);
         System.out.println(emp);
+    }
+
+    @Test
+    public void testQueryEmpNameAndSalary() {
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        Map<String, Object> resultMap = employeeMapper.selectEmpNameAndMaxSalary();
+        Set<Map.Entry<String, Object>> entrySet = resultMap.entrySet();
+        for (Map.Entry<String, Object> entry : entrySet) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            System.out.println(key + "=" + value);
+        }
     }
 
     @After
