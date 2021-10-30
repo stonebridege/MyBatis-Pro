@@ -3,6 +3,7 @@ package com.stonebridge.myBatis.dao;
 import com.stonebridge.myBatis.domain.Emp;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,4 +38,6 @@ public interface EmployeeMapper {
     Emp selectEmployee(Integer empId);
 
     Map<String, Object> selectEmpNameAndMaxSalary();
+
+    List<Emp> selectAll();
 }

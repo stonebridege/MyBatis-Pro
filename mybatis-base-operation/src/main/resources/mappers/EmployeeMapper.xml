@@ -86,4 +86,10 @@
             FROM t_emp
         )
     </select>
+
+    <!-- List<Employee> selectAll(); -->
+    <select id="selectAll" resultType="com.stonebridge.myBatis.domain.Emp">
+        select emp_id empId, emp_name empName, emp_salary empSalary
+        from t_emp
+    </select>
 </mapper>

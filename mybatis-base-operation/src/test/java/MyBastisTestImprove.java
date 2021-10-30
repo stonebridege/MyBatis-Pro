@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -101,6 +102,15 @@ public class MyBastisTestImprove {
             String key = entry.getKey();
             Object value = entry.getValue();
             System.out.println(key + "=" + value);
+        }
+    }
+
+    @Test
+    public void testSelectAll() {
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        List<Emp> employeeList = employeeMapper.selectAll();
+        for (Emp employee : employeeList) {
+            System.out.println("employee = " + employee);
         }
     }
 
