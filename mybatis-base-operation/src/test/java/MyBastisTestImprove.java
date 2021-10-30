@@ -114,6 +114,16 @@ public class MyBastisTestImprove {
         }
     }
 
+    @Test
+    public void testSaveEmp() {
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        Emp employee = new Emp();
+        employee.setEmpName("john");
+        employee.setEmpSalary(666.66);
+        employeeMapper.insertEmployee(employee);
+        System.out.println("employee.getEmpId() = " + employee.getEmpId());
+    }
+
     @After
     public void clear() {
         session.commit();

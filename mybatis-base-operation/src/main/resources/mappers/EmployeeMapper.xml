@@ -92,4 +92,12 @@
         select emp_id empId, emp_name empName, emp_salary empSalary
         from t_emp
     </select>
+
+    <!-- int insertEmployee(Employee employee); -->
+    <!-- useGeneratedKeys属性字面意思就是“使用生成的主键” -->
+    <!-- keyProperty属性可以指定主键在实体类对象中对应的属性名，Mybatis会将拿到的主键值存入这个属性 -->
+    <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="empId">
+        insert into t_emp(emp_name,emp_salary)
+        values(#{empName},#{empSalary})
+    </insert>
 </mapper>

@@ -40,4 +40,6 @@ public interface EmployeeMapper {
     Map<String, Object> selectEmpNameAndMaxSalary();
 
     List<Emp> selectAll();
+
+    int insertEmployee(Emp employee);
 }
