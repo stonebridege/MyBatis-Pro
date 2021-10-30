@@ -97,7 +97,26 @@
     <!-- useGeneratedKeys属性字面意思就是“使用生成的主键” -->
     <!-- keyProperty属性可以指定主键在实体类对象中对应的属性名，Mybatis会将拿到的主键值存入这个属性 -->
     <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="empId">
-        insert into t_emp(emp_name,emp_salary)
-        values(#{empName},#{empSalary})
+        insert into t_emp(emp_name, emp_salary)
+        values (#{empName}, #{empSalary})
     </insert>
+
+    <!-- 使用resultMap标签明确声明数据库表字段名和属性名的对应关系 -->
+    <!-- id属性：resultMap标签的唯一标识 -->
+    <!-- type属性：指定Java实体类类型的全类名，用于封装最后的实体类数据 -->
+    <resultMap id="selectWithResultMapResultMap" type="com.stonebridge.myBatis.domain.Emp">
+        <!-- 使用id标签声明主键字段和属性的对应关系 -->
+        <id column="emp_id" property="empId"/>
+        <!-- 使用result标签声明对应关系 -->
+        <!--<result column="emp_id" property="empId"/>-->
+        <result column="emp_name" property="empName"/>
+        <result column="emp_salary" property="empSalary"/>
+    </resultMap>
+
+    <!-- List<Emp> selectWithResultMap(); -->
+    <!-- 在select标签的resultMap属性中引用配套的resultMap -->
+    <select id="selectWithResultMap" resultMap="selectWithResultMapResultMap">
+        select emp_id, emp_name, emp_salary
+        from t_emp
+    </select>
 </mapper>

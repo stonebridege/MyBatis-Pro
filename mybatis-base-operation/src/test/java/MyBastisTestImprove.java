@@ -124,6 +124,16 @@ public class MyBastisTestImprove {
         System.out.println("employee.getEmpId() = " + employee.getEmpId());
     }
 
+    @Test
+    public void testSelectWithResultMap() {
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        List<Emp> empList = employeeMapper.selectWithResultMap();
+        for (Emp emp : empList) {
+            System.out.println("emp = " + emp);
+        }
+    }
+
+
     @After
     public void clear() {
         session.commit();

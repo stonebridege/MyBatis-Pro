@@ -42,4 +42,6 @@ public interface EmployeeMapper {
     List<Emp> selectAll();
 
     int insertEmployee(Emp employee);
+
+    List<Emp> selectWithResultMap();
 }
