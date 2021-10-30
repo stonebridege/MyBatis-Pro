@@ -1,5 +1,8 @@
 import com.stonebridge.myBatis.dao.EmployeeMapper;
+import com.stonebridge.myBatis.dao.OrderMapper;
 import com.stonebridge.myBatis.domain.Emp;
+import com.stonebridge.myBatis.domain.Order;
+import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -131,6 +134,13 @@ public class MyBastisTestImprove {
         for (Emp emp : empList) {
             System.out.println("emp = " + emp);
         }
+    }
+
+    @Test
+    public void testGetOrderWithCuster() {
+        OrderMapper OrderMapper = session.getMapper(OrderMapper.class);
+        Order order = OrderMapper.selectOrderWithCustomer(1);
+        System.out.println(order);
     }
 
 
