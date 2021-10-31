@@ -2,10 +2,34 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- mapper是根标签。namespace属性是找到当前配置的依据 -->
-<!-- 由于最理想的Mybatis使用方式是：通过Mapper接口调用接口方法，访问数据库 -->
-<!-- 这样的理想方式要求：能够通过接口全类名找到Mapper配置 -->
-<!-- 所以：我们就用Mapper接口的全类名来给namespace属性赋值 -->
 <mapper namespace="com.stonebridge.mybatis.mapper.OrderMapper">
+    <resultMap id="selectOrderWithCustomerTwoStepResultMap" type="com.stonebridge.mybatis.entity.Order">
+        <!-- 第一部分：映射Order自己的属性 -->
+        <id column="order_id" property="orderId"/>
+        <result column="order_name" property="orderName"/>
+        <result column="customer_id" property="customerId"/>
+
+        <!-- 第二部分：映射Customer -->
+        <!-- select属性：定位到另外一条专门查询Customer的SQL语句 -->
+        <!-- column属性：指定用来给查询Customer的SQL语句传参的字段 -->
+        <association
+                property="customer"
+                column="customer_id"
+                select="com.stonebridge.mybatis.mapper.CustomerMapper.selectCustomerById"/>
+    </resultMap>
+
+    <!-- Order selectOrderWithCustomerTwoStep(Integer orderId); -->
+    <!-- 分步查询时，查询Order就只查Order -->
+    <select id="selectOrderWithOrderTwoStep" resultMap="selectOrderWithCustomerTwoStepResultMap">
+        select order_id, order_name, customer_id
+        from t_order
+        where order_id = #{orderId}
+    </select>
+    <!-- 根据customerId查询Order集合 -->
+    <select id="selectOrderListByCustomerId" resultType="com.stonebridge.mybatis.entity.Order">
+        select order_id, order_name, customer_id
+        from t_order
+        where customer_id = #{customerId}
+    </select>
 
 </mapper>

@@ -21,6 +21,34 @@ public class MybatisTest {
         session = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml")).openSession();
     }
 
+    @Test
+    public void testQueryOrderWithOrderList() {
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+        Integer orderId = 1;
+        // 查询Order对象
+        Order order = orderMapper.selectOrderWithOrderTwoStep(orderId);
+        // 打印Order对象本身信息
+        System.out.println("order = " + order);
+        // 通过Order对象获取关联的Customer对象
+        Customer customer = order.getCustomer();
+        System.out.println("customer = " + customer);
+    }
+
+    @Test
+    public void testQueryCustomerWithOrderList() {
+        CustomerMapper customerMapper = session.getMapper(CustomerMapper.class);
+        Integer customerId = 1;
+        // 查询Order对象
+        Customer customer = customerMapper.selectCustomerWithOrderList(customerId);
+        // 打印Order对象本身信息
+        System.out.println("customer = " + customer);
+        // 通过Order对象获取关联的Customer对象
+        List<Order> list = customer.getOrderList();
+        for (Order order : list) {
+            System.out.println("order=" + order);
+        }
+    }
+
 
     @After
     public void clear() {
