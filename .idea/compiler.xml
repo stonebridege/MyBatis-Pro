@@ -7,8 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mybatis-relationship" />
-        <module name="mybatis-lazyloading" />
         <module name="mybatis-base-operation" />
+        <module name="mybatis-lazyloading" />
+        <module name="mybatis-dynamic-SQL" />
       </profile>
     </annotationProcessing>
   </component>

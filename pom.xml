@@ -12,6 +12,7 @@
         <module>mybatis-base-operation</module>
         <module>mybatis-relationship</module>
         <module>mybatis-lazyloading</module>
+        <module>mybatis-dynamic-SQL</module>
     </modules>
 
     <properties>
