@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,17 @@ public class MyBastisTestImprove {
         map.put("empName", "stonebridge");
         map.put("empSalary", 20000);
         Integer row = customerMapper.updateEmpConditional(map);
+    }
+
+    @Test
+    public void testBatchInsert() {
+        EmployeeMapper customerMapper = session.getMapper(EmployeeMapper.class);
+        List<Emp> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Emp emp = new Emp(null, "tiger_" + i, i * 1000.00);
+            list.add(emp);
+        }
+        customerMapper.batchInsert(list);
     }
 
     @Test

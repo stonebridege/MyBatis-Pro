@@ -1,6 +1,7 @@
 package com.stonebridge.MyBatis.dao;
 
 import com.stonebridge.MyBatis.domain.Emp;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,6 @@ public interface EmployeeMapper {
     Integer updateEmpConditional(Map<String, Object> map);
 
     List<Emp> selectEmpByConditionByTrim(Map<String, Object> map);
+
+    void batchInsert(@Param("empList") List<Emp> empList);
 }

@@ -64,4 +64,22 @@
             </if>
         </trim>
     </select>
+
+
+    <!-- 如果接口形参位置没有使用@Param注解，而且foreach标签也没有使用默认名称，会抛出下面异常： -->
+    <!-- Caused by: org.apache.ibatis.binding.BindingException: Parameter 'empList' not found. Available parameters are [arg0, collection, list] -->
+    <!-- 为了代码可读性更好，还是加上@Param注解比较好 -->
+    <!-- void batchInsert(@Param("empList") List<Emp> empList); -->
+    <insert id="batchInsert">
+        insert into t_emp(emp_name, emp_salary)
+        <!-- collection属性：指定要遍历的集合 -->
+        <!-- item属性：给遍历出来的每一个对象起个名字，便于引用 -->
+        <!-- index属性：获取遍历过程中每一个元素的索引值 -->
+        <!-- separator属性：每个循环体生成的字符串之间的分隔符 -->
+        <!-- open属性：针对整个foreach标签生成的字符串整体，要加到前面的字符串 -->
+        <!-- close属性：针对整个foreach标签生成的字符串整体，要加到后面的字符串 -->
+        <foreach collection="empList" item="emp" separator="," open="values">
+            (#{emp.empName},#{emp.empSalary})
+        </foreach>
+    </insert>
 </mapper>
