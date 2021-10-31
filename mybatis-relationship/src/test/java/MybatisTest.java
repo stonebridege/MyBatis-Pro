@@ -19,6 +19,13 @@ public class MybatisTest {
     }
 
     @Test
+    public void testQueryOrderWithCustomer() {
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+        Order order = orderMapper.selectOrderWithCustomer(1);
+        System.out.println(order);
+    }
+
+    @Test
     public void testQueryOrder() {
         OrderMapper orderMapper = session.getMapper(OrderMapper.class);
         Order order = orderMapper.selectOrderById(1);
