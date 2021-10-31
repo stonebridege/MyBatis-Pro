@@ -1,4 +1,6 @@
+import com.stonebridge.mybatis.entity.Customer;
 import com.stonebridge.mybatis.entity.Order;
+import com.stonebridge.mybatis.mapper.CustomerMapper;
 import com.stonebridge.mybatis.mapper.OrderMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MybatisTest {
     private SqlSession session;
@@ -16,6 +19,21 @@ public class MybatisTest {
     @Before
     public void init() throws IOException {
         session = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml")).openSession();
+    }
+
+    @Test
+    public void testQueryCustomerWithOrderList() {
+        CustomerMapper customerMapper = session.getMapper(CustomerMapper.class);
+        Integer customerId = 1;
+        // 执行查询
+        Customer customer = customerMapper.selectCustomerWithOrderList(customerId);
+        // 打印Customer本身
+        System.out.println("customer = " + customer);
+        // 从Customer中获取Order集合数据
+        List<Order> orderList = customer.getOrderList();
+        for (Order order : orderList) {
+            System.out.println("order = " + order);
+        }
     }
 
     @Test

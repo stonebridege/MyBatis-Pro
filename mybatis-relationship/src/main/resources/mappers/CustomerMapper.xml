@@ -2,7 +2,31 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper是根标签。namespace属性是找到当前配置的依据 -->
+<!-- 由于最理想的Mybatis使用方式是：通过Mapper接口调用接口方法，访问数据库 -->
+<!-- 这样的理想方式要求：能够通过接口全类名找到Mapper配置 -->
+<!-- 所以：我们就用Mapper接口的全类名来给namespace属性赋值 -->
 <mapper namespace="com.stonebridge.mybatis.mapper.CustomerMapper">
-
-
+    <!-- resultMap标签：映射关联关系 -->
+    <resultMap id="selectCustomerWithOrderLisResultMap" type="com.stonebridge.mybatis.entity.Customer">
+        <!-- 第一部分：Customer自身属性映射 -->
+        <id column="customer_id" property="customerId"></id>
+        <result column="customer_name" property="customerName"></result><!-- 第二部分：关联关系的映射 -->
+        <!-- collection标签：映射『对多』关联关系 -->
+        <!-- property属性：指定当前实体类中映射关联关系的属性名 -->
+        <!-- ofType属性：指定关联关系中对方的类型 -->
+        <collection property="orderList" ofType="com.stonebridge.mybatis.entity.Order">
+            <!-- 在collection中映射Order类型的对应关系 -->
+            <id column="order_id" property="orderId"></id>
+            <result column="order_name" property="orderName"></result>
+            <result column="customer_id" property="customerId"></result>
+        </collection>
+    </resultMap>
+    <!-- Customer selectCustomerWithOrderList(Integer customerId); -->
+    <select id="selectCustomerWithOrderList" resultMap="selectCustomerWithOrderLisResultMap">
+        select c.customer_id, customer_name, order_id, order_name
+        from t_customer c
+                 left join t_order o on c.customer_id = o.customer_id
+        where c.customer_id = #{customerId}
+    </select>
 </mapper>
