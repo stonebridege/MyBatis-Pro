@@ -16,4 +16,6 @@ public interface EmployeeMapper {
     List<Emp> selectEmpByCondition(Map map);
 
     Integer updateEmpConditional(Map<String, Object> map);
+
+    List<Emp> selectEmpByConditionByTrim(Map<String, Object> map);
 }

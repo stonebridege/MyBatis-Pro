@@ -32,13 +32,26 @@ public class MyBastisTestImprove {
             System.out.println("emp:" + emp.toString());
         }
     }
+
     @Test
     public void testUpadteEmpCondition() {
         EmployeeMapper customerMapper = session.getMapper(EmployeeMapper.class);
         Map<String, Object> map = new HashMap<>();
-        map.put("empName", null);
-        map.put("empSalary", 99);
+        map.put("empName", "stonebridge");
+        map.put("empSalary", 20000);
         Integer row = customerMapper.updateEmpConditional(map);
+    }
+
+    @Test
+    public void testSelectEmpByConditionByTrim() {
+        EmployeeMapper customerMapper = session.getMapper(EmployeeMapper.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("empName", "stonebridge");
+//        map.put("empSalary", 2000);
+        List<Emp> list = customerMapper.selectEmpByConditionByTrim(map);
+        for (Emp emp : list) {
+            System.out.println(emp);
+        }
     }
 
 

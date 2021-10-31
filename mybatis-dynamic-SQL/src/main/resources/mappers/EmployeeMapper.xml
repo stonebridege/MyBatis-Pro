@@ -45,4 +45,23 @@
         </set>
         where emp_id=25
     </update>
+
+    <!-- List<Emp> selectEmpByConditionByTrim(Emp condition); -->
+    <select id="selectEmpByConditionByTrim" resultType="com.stonebridge.MyBatis.domain.Emp">
+        select emp_id, emp_name, emp_salary from t_emp
+        <!-- trim标签内部如果有条件，则where会出现，否则where不出现 -->
+        <!-- 整个条件部分，如果在后面有多出来的“and或or”会被自动去掉 -->
+        <trim prefix="where" prefixOverrides="and|or">
+            <!-- 使用if标签可以让SQL语句的片段，在满足条件时才加入最终的SQL语句 -->
+            <!-- test属性：if标签中的判断条件。在test属性中能直接访问接口抽象方法传入的数据 -->
+            <if test="empName != null">
+                or emp_name=#{empName}
+            </if>
+
+            <!-- test属性：在条件判断语句中，难免会用到大于号、小于号。此时需要将大于号、小于号转义。 -->
+            <if test="empSalary &gt; 2000">
+                and emp_salary>#{empSalary}
+            </if>
+        </trim>
+    </select>
 </mapper>
