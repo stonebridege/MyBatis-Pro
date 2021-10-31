@@ -7,6 +7,8 @@
     <properties resource="jdbc.properties"/>
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 开启延迟加载功能 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
     </settings>
 
     <!-- environments表示配置Mybatis的开发环境，可以配置多个环境，在众多具体环境中，使用default属性指定实际运行时使用的环境。default属性的取值是environment标签的id属性的值。 -->

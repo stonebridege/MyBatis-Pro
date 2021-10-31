@@ -31,5 +31,4 @@
         from t_order
         where customer_id = #{customerId}
     </select>
-
 </mapper>

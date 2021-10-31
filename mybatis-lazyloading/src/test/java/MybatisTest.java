@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MybatisTest {
     private SqlSession session;
@@ -35,13 +36,16 @@ public class MybatisTest {
     }
 
     @Test
-    public void testQueryCustomerWithOrderList() {
+    public void testQueryCustomerWithOrderList() throws InterruptedException {
         CustomerMapper customerMapper = session.getMapper(CustomerMapper.class);
         Integer customerId = 1;
         // 查询Order对象
         Customer customer = customerMapper.selectCustomerWithOrderList(customerId);
         // 打印Order对象本身信息
-        System.out.println("customer = " + customer);
+//        System.out.println("customer = " + customer);
+        System.out.println("customerId:" + customer.getCustomerId());
+        System.out.println("customerName:" + customer.getCustomerName());
+        TimeUnit.SECONDS.sleep(3);
         // 通过Order对象获取关联的Customer对象
         List<Order> list = customer.getOrderList();
         for (Order order : list) {
