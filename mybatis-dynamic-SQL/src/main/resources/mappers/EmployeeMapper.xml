@@ -25,6 +25,10 @@
             <if test="empSalary &gt; 100">
                 or emp_salary=#{empSalary}
             </if>
+            <!-- 第一种情况：两个条件都满足 -->
+            <!-- 第二种情况：empName满足，empSalary不满足 -->
+            <!-- 第三种情况：empName不满足，empSalary满足 -->
+            <!-- 第四种情况：两个条件都不满足 -->
         </where>
     </select>
 </mapper>

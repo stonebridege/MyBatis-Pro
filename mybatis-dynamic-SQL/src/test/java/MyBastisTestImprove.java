@@ -25,8 +25,8 @@ public class MyBastisTestImprove {
     public void testQueryEmp() {
         EmployeeMapper customerMapper = session.getMapper(EmployeeMapper.class);
         Map<String, Object> map = new HashMap<>();
-        map.put("empName",null);
-        map.put("empSalary",999.99);
+        map.put("empName","stonebridge");
+        map.put("empSalary",200000);
         List<Emp> list = customerMapper.selectEmpByCondition(map);
         for (Emp emp : list) {
             System.out.println("emp:" + emp.toString());
