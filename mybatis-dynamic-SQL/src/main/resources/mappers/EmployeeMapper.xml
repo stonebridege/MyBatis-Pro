@@ -8,4 +8,23 @@
 <!-- 以前我们叫dao，现在叫mapper，本质上都是持久化层的类型，只是命名习惯的区别 -->
 <mapper namespace="com.stonebridge.MyBatis.dao.EmployeeMapper">
 
+    <!--    List<Emp> selectEmpByCondition(Map map);-->
+    <select id="selectEmpByCondition" resultType="com.stonebridge.MyBatis.domain.Emp">
+        select emp_id, emp_name, emp_salary
+        from t_emp
+        <!-- 使用where标签动态生成SQL语句中的where子句 -->
+        <!-- where标签的效果1：如果where标签内没有有效的条件，那么最终的SQL语句中，不会出现where关键词 -->
+        <!-- where标签的效果2：能够去除查询条件中前后多余的and或or -->
+        <where>
+            <!-- 使用if标签可以让SQL语句的片段，在满足条件时才加入最终的SQL语句 -->
+            <!-- test属性：if标签中的判断条件。在test属性中能直接访问接口抽象方法传入的数据 -->
+            <if test="empName!=null">
+                or emp_name=#{empName}
+            </if>
+            <!-- test属性：在条件判断语句中，难免会用到大于号、小于号。此时需要将大于号、小于号转义(&lt;)。 -->
+            <if test="empSalary &gt; 100">
+                or emp_salary=#{empSalary}
+            </if>
+        </where>
+    </select>
 </mapper>

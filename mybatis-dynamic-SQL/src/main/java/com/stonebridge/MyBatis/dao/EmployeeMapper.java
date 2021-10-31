@@ -1,5 +1,10 @@
 package com.stonebridge.MyBatis.dao;
 
+import com.stonebridge.MyBatis.domain.Emp;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * 声明这个接口是为了上层代码调用Mybatis的具体功能
  * 接口的全类名要和Mapper配置文件的namespace一直，这样才能通过接口找到Mapper配置
@@ -8,4 +13,5 @@ package com.stonebridge.MyBatis.dao;
  */
 public interface EmployeeMapper {
 
+    List<Emp> selectEmpByCondition(Map map);
 }
