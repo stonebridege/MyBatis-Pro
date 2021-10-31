@@ -31,4 +31,18 @@
             <!-- 第四种情况：两个条件都不满足 -->
         </where>
     </select>
+    <!--    Integer updateEmpConditional(Map<String, Object> map);-->
+    <update id="updateEmpConditional">
+        update t_emp
+        <set>
+            <if test="empName!=null">
+                emp_name=#{empName},
+            </if>
+            <!-- test属性：在条件判断语句中，难免会用到大于号、小于号。此时需要将大于号、小于号转义(&lt;)。 -->
+            <if test="empSalary &gt; 100">
+                emp_salary=#{empSalary},
+            </if>
+        </set>
+        where emp_id=25
+    </update>
 </mapper>

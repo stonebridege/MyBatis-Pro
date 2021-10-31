@@ -14,4 +14,6 @@ import java.util.Map;
 public interface EmployeeMapper {
 
     List<Emp> selectEmpByCondition(Map map);
+
+    Integer updateEmpConditional(Map<String, Object> map);
 }
