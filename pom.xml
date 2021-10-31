@@ -11,6 +11,7 @@
     <modules>
         <module>mybatis-base-operation</module>
         <module>mybatis-relationship</module>
+        <module>mybatis-lazyloading</module>
     </modules>
 
     <properties>
