@@ -1,8 +1,7 @@
-import com.stonebridge.myBatis.dao.EmployeeMapper;
-import com.stonebridge.myBatis.dao.OrderMapper;
-import com.stonebridge.myBatis.domain.Emp;
-import com.stonebridge.myBatis.domain.Order;
-import com.sun.tools.corba.se.idl.constExpr.Or;
+import com.stonebridge.MyBatis.dao.EmployeeMapper;
+import com.stonebridge.MyBatis.dao.OrderMapper;
+import com.stonebridge.MyBatis.domain.Emp;
+import com.stonebridge.MyBatis.domain.Order;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;

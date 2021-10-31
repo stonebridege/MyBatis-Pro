@@ -6,7 +6,7 @@
 <!-- Java程序就是通过mapper标签的namespace属性找到当前Mapper配置文件 -->
 <!-- 将来为了让一个Java接口，直接对应这个Mapp|er配置文件，通常使用Java接口的全类名作为这个namespace属性的值 -->
 <!-- 以前我们叫dao，现在叫mapper，本质上都是持久化层的类型，只是命名习惯的区别 -->
-<mapper namespace="com.stonebridge.myBatis.dao.EmployeeMapper">
+<mapper namespace="com.stonebridge.MyBatis.dao.EmployeeMapper">
 
     <!-- select语句使用select标签<select></select> -->
     <!-- insert语句使用insert标签<insert></insert> -->
@@ -16,7 +16,7 @@
     <!-- 在select标签中编写一条select语句实现查询效果 -->
     <!-- id属性：这条SQL语句的唯一标识 -->
     <!-- resultType属性：Mybatis负责解析结果集，将解析得到的数据封装到Java类型中。resultType属性就是指定这个Java类型 -->
-    <select id="selectEmpById" resultType="com.stonebridge.myBatis.domain.Emp">
+    <select id="selectEmpById" resultType="com.stonebridge.MyBatis.domain.Emp">
         <!-- #{empId}这里是为了方便接收Java程序传过来的参数数据 -->
         <!-- Mybatis负责将#{empId}部分转换为"?"占位符 -->
         <!-- 如果查出表的字段和Java类型的字段不一致，可以通过取别名的方式实现-->
@@ -45,7 +45,7 @@
         where emp_id = #{empId}
     </update>
 
-    <select id="selectEmpByName" resultType="com.stonebridge.myBatis.domain.Emp">
+    <select id="selectEmpByName" resultType="com.stonebridge.MyBatis.domain.Emp">
         select emp_id empId, emp_name empName, emp_salary empSalary
         from t_emp
         where emp_name like "%${name}%"
@@ -68,7 +68,7 @@
 
     <!-- 编写具体的SQL语句，使用id属性唯一的标记一条SQL语句 -->
     <!-- resultType属性：指定封装查询结果的Java实体类的全类名 -->
-    <select id="selectEmployee" resultType="com.stonebridge.myBatis.domain.Emp">
+    <select id="selectEmployee" resultType="com.stonebridge.MyBatis.domain.Emp">
         <!-- Mybatis负责把SQL语句中的#{}部分替换成“?”占位符 -->
         <!-- 给每一个字段设置一个别名，让别名和Java实体类中属性名一致 -->
         select emp_id empId,emp_name empName,emp_salary empSalary from t_emp where emp_id=#{empId}
@@ -88,7 +88,7 @@
     </select>
 
     <!-- List<Employee> selectAll(); -->
-    <select id="selectAll" resultType="com.stonebridge.myBatis.domain.Emp">
+    <select id="selectAll" resultType="com.stonebridge.MyBatis.domain.Emp">
         select emp_id empId, emp_name empName, emp_salary empSalary
         from t_emp
     </select>
@@ -104,7 +104,7 @@
     <!-- 使用resultMap标签明确声明数据库表字段名和属性名的对应关系 -->
     <!-- id属性：resultMap标签的唯一标识 -->
     <!-- type属性：指定Java实体类类型的全类名，用于封装最后的实体类数据 -->
-    <resultMap id="selectWithResultMapResultMap" type="com.stonebridge.myBatis.domain.Emp">
+    <resultMap id="selectWithResultMapResultMap" type="com.stonebridge.MyBatis.domain.Emp">
         <!-- 使用id标签声明主键字段和属性的对应关系 -->
         <id column="emp_id" property="empId"/>
         <!-- 使用result标签声明对应关系 -->

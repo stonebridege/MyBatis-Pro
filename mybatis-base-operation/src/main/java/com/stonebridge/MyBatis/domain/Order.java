@@ -1,20 +1,18 @@
-package com.stonebridge.myBatis.domain;
+package com.stonebridge.MyBatis.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Customer {
+public class Order {
+    private long orderId;
+    private String orderName;
     private long customerId;
-    private String customerName;
-
-    // 体现对多关系
-    private List<Order> orderList;
+    // 体现对一关系
+    private Customer customer;
 }

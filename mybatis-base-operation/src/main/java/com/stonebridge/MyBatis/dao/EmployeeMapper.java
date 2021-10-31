@@ -1,6 +1,6 @@
-package com.stonebridge.myBatis.dao;
+package com.stonebridge.MyBatis.dao;
 
-import com.stonebridge.myBatis.domain.Emp;
+import com.stonebridge.MyBatis.domain.Emp;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

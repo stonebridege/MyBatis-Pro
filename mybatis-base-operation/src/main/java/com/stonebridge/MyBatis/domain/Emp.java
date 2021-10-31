@@ -1,4 +1,4 @@
-package com.stonebridge.myBatis.domain;
+package com.stonebridge.MyBatis.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

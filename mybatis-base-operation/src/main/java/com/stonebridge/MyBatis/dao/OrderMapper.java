@@ -1,6 +1,6 @@
-package com.stonebridge.myBatis.dao;
+package com.stonebridge.MyBatis.dao;
 
-import com.stonebridge.myBatis.domain.Order;
+import com.stonebridge.MyBatis.domain.Order;
 
 public interface OrderMapper {
     Order selectOrderWithCustomer(Integer orderId);
