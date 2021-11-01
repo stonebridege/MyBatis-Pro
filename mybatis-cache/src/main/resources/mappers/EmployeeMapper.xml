@@ -7,6 +7,8 @@
 <!-- 将来为了让一个Java接口，直接对应这个Mapp|er配置文件，通常使用Java接口的全类名作为这个namespace属性的值 -->
 <!-- 以前我们叫dao，现在叫mapper，本质上都是持久化层的类型，只是命名习惯的区别 -->
 <mapper namespace="com.stonebridge.MyBatis.dao.EmployeeMapper">
+    <!-- 加入cache标签启用二级缓存功能 -->
+    <cache/>
     <select id="selectEmpById" resultType="com.stonebridge.MyBatis.domain.Emp">
         select emp_id, emp_name, emp_salary
         from t_emp

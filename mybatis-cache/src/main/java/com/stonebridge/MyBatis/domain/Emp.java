@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * 和数据库表t_emp对应的实体类
  * emp_id INT AUTO_INCREMENT
@@ -17,7 +19,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class Emp {
+public class Emp implements Serializable {
     private Long empId;
     private String empName;
     private Double empSalary;

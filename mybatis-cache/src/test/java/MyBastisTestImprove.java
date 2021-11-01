@@ -119,4 +119,53 @@ public class MyBastisTestImprove {
         session.commit();
         session.close();
     }
+
+    @Test
+    public void testSecondLevelCache() {
+        // 测试二级缓存存在：使用两个不同SqlSession执行查询
+        // 说明：SqlSession提交事务时才会将查询到的数据存入二级缓存
+        // 所以本例并没有能够成功从二级缓存获取到数据
+        SqlSession session01 = factory.openSession();
+        SqlSession session02 = factory.openSession();
+        EmployeeMapper mapper01 = session01.getMapper(EmployeeMapper.class);
+        EmployeeMapper mapper02 = session02.getMapper(EmployeeMapper.class);
+        Integer empId = 1;
+        // DEBUG 11-01 16:59:15,933 Cache Hit Ratio [com.stonebridge.MyBatis.dao.EmployeeMapper]: 0.0
+        Emp emp01 = mapper01.selectEmpById(empId);
+        // DEBUG 11-01 16:59:16,630 Cache Hit Ratio [com.stonebridge.MyBatis.dao.EmployeeMapper]: 0.0
+        Emp emp02 = mapper02.selectEmpById(empId);
+        System.out.println("emp01 = " + emp01);
+        System.out.println("emp02 = " + emp02);
+        session01.commit();
+        session01.close();
+        session02.commit();
+        session02.close();
+    }
+
+    @Test
+    public void testSecondLevelCacheWork() {
+        SqlSession session = factory.openSession();
+        EmployeeMapper employeeMapper = session.getMapper(EmployeeMapper.class);
+        Integer empId = 1;
+        // 第一次查询
+        Emp emp01 = employeeMapper.selectEmpById(empId);
+        System.out.println("emp01 = " + emp01);
+        // 提交事务
+        session.commit();
+        // 关闭旧SqlSession
+        session.close();
+        // 开启新SqlSession
+        session = factory.openSession();
+        // 第二次查询
+        employeeMapper = session.getMapper(EmployeeMapper.class);
+        Emp emp02 = employeeMapper.selectEmpById(empId);
+        System.out.println("emp02 = " + emp02);
+        session.commit();
+        session.close();
+        session = factory.openSession();
+        employeeMapper = session.getMapper(EmployeeMapper.class);
+        employeeMapper.selectEmpById(empId);
+        session.commit();
+        session.close();
+    }
 }
