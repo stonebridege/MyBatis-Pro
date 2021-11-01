@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 在Java程序中，必须找到当前的Mapper配置文件，才能进一步找到这里配置的SQL语句 -->
+<!-- Java程序就是通过mapper标签的namespace属性找到当前Mapper配置文件 -->
+<!-- 将来为了让一个Java接口，直接对应这个Mapp|er配置文件，通常使用Java接口的全类名作为这个namespace属性的值 -->
+<!-- 以前我们叫dao，现在叫mapper，本质上都是持久化层的类型，只是命名习惯的区别 -->
+<mapper namespace="com.stonebridge.MyBatis.dao.EmployeeMapper">
+    <select id="selectEmpById" resultType="com.stonebridge.MyBatis.domain.Emp">
+        select emp_id, emp_name, emp_salary
+        from t_emp
+        where emp_id = #{empId}
+    </select>
+    <update id="updateEmp">
+        update t_emp
+        set emp_name=#{empName},
+            emp_salary=#{empSalary}
+        where emp_id = #{empId}
+    </update>
+</mapper>

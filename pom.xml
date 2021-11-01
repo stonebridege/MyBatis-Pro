@@ -13,6 +13,7 @@
         <module>mybatis-relationship</module>
         <module>mybatis-lazyloading</module>
         <module>mybatis-dynamic-SQL</module>
+        <module>mybatis-cache</module>
     </modules>
 
     <properties>
