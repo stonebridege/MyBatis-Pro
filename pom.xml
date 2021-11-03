@@ -15,6 +15,7 @@
         <module>mybatis-dynamic-SQL</module>
         <module>mybatis-cache</module>
         <module>mybatis-echcache</module>
+        <module>mybatis-MBG</module>
     </modules>
 
     <properties>
