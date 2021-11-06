@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 引入外部属性文件 -->
+    <properties resource="jdbc.properties"/>
+
+    <!-- Mybatis全局配置 -->
+    <settings>
+        <!-- 将数据库表字段映射到驼峰式命名的Java实体类属性中 -->
+        <!-- 数据库表字段格式：单词_单词 -->
+        <!-- Java实体类属性：首字母小写的驼峰式命名 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!-- 在全局范围内，给实体类类型指定别名 -->
+    <!-- 使用提示：在实际开发中，需要大家相互配合，对于是否使用别名有可能有认知上的差异，需要注意 -->
+    <typeAliases>
+        <!-- 方案一：针对具体的实体类逐个配置别名 -->
+        <!-- type属性：实体类原本的全类名 -->
+        <!-- alias属性：给实体类类型指定的别名，在Mapper配置文件中使用别名更简洁 -->
+        <!--<typeAlias type="com.atguigu.mybatis.entity.Customer" alias="Maomi"/>-->
+
+        <!-- 方案二：直接指定实体类所在的包，只要在这个包就用简单类名代替全类名 -->
+        <package name="com.atguigu.mybatis.entity"/>
+    </typeAliases>
+
+    <!-- Mybatis工作时有可能用到的各种环境 -->
+    <environments default="development">
+
+        <!-- 一个具体的环境，就是一个可以使用的数据库连接信息 -->
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+
+                <!-- 使用${}格式从外部属性文件中引用数据 -->
+                <property name="driver" value="${wechat.dev.driver}"/>
+                <property name="url" value="${wechat.dev.url}"/>
+                <property name="username" value="${wechat.dev.username}"/>
+                <property name="password" value="${wechat.dev.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 注册Mapper配置文件 -->
+    <mappers>
+        <!-- 使用mapper标签指定一个具体的Mapper配置文件 -->
+        <!--<mapper resource="mappers/EmployeeMapper.xml"/>-->
+
+        <!-- 通过package标签指定Mapper资源所在的包，加载、注册全部Mapper配置文件 -->
+        <!-- 由于Maven工程的特殊性，Mapper配置文件需要放在resources目录下，目录结构和包一致 -->
+        <package name="com.atguigu.mybatis.mapper"/>
+    </mappers>
+</configuration>
